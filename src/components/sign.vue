@@ -1,9 +1,9 @@
 <template>
   <div class="sign">
-    <div class="sign-wrapper" @keyup.enter="login">
+    <div class="sign-wrapper">
       <el-form ref="form" :model="form">
         <el-form-item label="头像" prop="headpic" class="sign-pic">
-          <img src="" alt=""/>
+          <img src="" alt="" class="headimg"/>
           <input type="file" class="touxiang"/>
           <p class="change">修改头像</p>
         </el-form-item>
@@ -18,7 +18,7 @@
         </el-form-item>
         <el-form-item class="sign-button">
           <el-button size="large" class="form-submit" @click="sign(form)">注册</el-button>
-          <p class="login" @click="gotoLogin">已有账号？立即登录</p>
+          <p class="login" @click="gotoLogin()">已有账号？立即登录</p>
         </el-form-item>
       </el-form>
     </div>
@@ -86,4 +86,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .sign-wrapper{
+    position: relative;
+    height: 800px;
+    width: 500px;
+    margin: 0 auto;
+    border: 5px  solid lightblue;
+  }
+  .sign-wrapper .headimg{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid bisque;
+    margin: 0 auto;
+  }
 </style>

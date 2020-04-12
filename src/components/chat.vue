@@ -12,7 +12,8 @@
       <div class="inputArea">
         <input id="sendTxt" type="text"/>
         <button id="sendBtn">发送</button>
-      </div>     
+      </div>
+      <div v-show="historyShow" class="showHistory"></div>
   </div>
 </template>
 
@@ -20,11 +21,16 @@
 export default {
   name:'chat',
   data() {
-
+    return {
+      historyShow: false
+    }
   },
   methods: {
     leave(){
       this.$router.push({path: '/log'})
+    },
+    getHistory() {
+      this.historyShow=true;
     }
   }
 }

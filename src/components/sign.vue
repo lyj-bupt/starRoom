@@ -1,12 +1,11 @@
 <template>
   <div class="sign">
     <div class="sign-wrapper">
+      <input type="file" name="image" accept="image/*" @change="onchangeImg" class="touxiang"/>
+        <img alt="" :src="imgStr" class="headimg"/>
+        <p class="change">修改头像</p>
+        <p class="error">{{errorStr}}</p>
       <el-form ref="form" :model="form">
-        <el-form-item label="头像" prop="headpic" class="sign-pic">
-          <img src="" alt="" class="headimg"/>
-          <input type="file" class="touxiang"/>
-          <p class="change">修改头像</p>
-        </el-form-item>
         <el-form-item label="昵称" prop="username" class="sign-user">
           <el-input v-model="form.username" placeholder="昵称" class="sign-input"></el-input>
         </el-form-item>
@@ -50,7 +49,6 @@ export default {
     };
     return {
       form: {
-        headpic: '',
         username: '',
         password: '',
         checkpass: ''
@@ -59,10 +57,31 @@ export default {
         username: [{required: true,message: '请输入昵称',trigger: 'blur'}],
         password: [{validator: validatePass, trigger: 'blur'}],
         checkpass: [{validator: validatePass2, trigger:'blur'}]
-      }
+      },
+      imgStr: require('../assets/logo.png'),
+      errorStr: ''
     }
   },
   methods: {
+    onchangeImg(e){
+      var file=e.target.files[0];
+      let imgSize = file.size;
+      console.log(imgSize);
+      var _this = this;
+      if (imgSize <= 50 * 1024){
+        _this.errorStr = '';
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function () {
+          var dataURL = reader.result
+          console.log(dataURL)
+          _this.imgStr = dataURL
+        }
+      }else{
+        console.log('大小不合适')
+        _this.errorStr = '图片大小超出范围'
+        }
+    },
     sign (formname) {
       this.$ref[formname].validate(valid => {
         if (valid) {
@@ -77,10 +96,10 @@ export default {
     },
     gotoLogin() {
       this.$router.push({
-        path: '/login'
+        path: '/log'
       })
     }
-  }
+  } 
 }
 </script>
 

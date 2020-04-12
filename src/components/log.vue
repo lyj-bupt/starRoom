@@ -2,9 +2,6 @@
   <div class="log">
     <div class="log-wrapper" @keyup.enter="login">
       <el-form ref="formLogin" :model="form" label-width="0">
-        <el-form-item label="头像" prop="headpic" class="login-pic">
-          <img/>>
-        </el-form-item>
         <el-form-item label="昵称" prop="username" class="login-user">
           <el-input v-model="formLogin.username" placeholder="昵称" class="log-input"></el-input>
         </el-form-item>

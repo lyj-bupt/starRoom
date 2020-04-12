@@ -21,6 +21,11 @@ export default {
   name:'chat',
   data() {
 
+  },
+  methods: {
+    leave(){
+      this.$router.push({path: '/log'})
+    }
   }
 }
 </script>

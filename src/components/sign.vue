@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'welcome',
+  name: 'sign',
   data() {
     let validatePass = (rule,value,callback) => {
       if (value === ""){
